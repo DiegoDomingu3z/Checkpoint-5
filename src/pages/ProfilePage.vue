@@ -1,10 +1,7 @@
 <template>
     
-        <div class="row">
+       
 
-        <div class="col-md-12">
-            <ProfileDetails/>
-        </div>
         <div class="row container-fluid">
 
         <div class="col-md-3">
@@ -13,6 +10,7 @@
         
         <div class="col-md-6">
             <div>
+                <ProfileDetails/>
                 <Create v-show="profile.id == account.id"/>
                 <Post v-for="p in post" :key="p.id" :post="p"/>
             </div>
@@ -26,8 +24,11 @@
         
         
         </div>
-        </div>
-    
+       
+    <Modal id="edit-modal">
+        <template #header>Edit Profile </template>
+        <template #body> <EditForm/> </template>
+    </Modal>
 </template>
 
 

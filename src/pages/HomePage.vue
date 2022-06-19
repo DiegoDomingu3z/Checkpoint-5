@@ -8,11 +8,14 @@
       <!--  -->
     </div>
     <!-- Main Post Scroll -->
-    <div class="col-md-6">
+    <div class="col-md-6" v-if="post.length > 0">
+
         <Create/>
       
     <Post v-for="p in post" :key="p.id" :post="p"/>
-      
+    </div>
+    <div class="col-md-6 text-center p-5" v-else>
+      <h1>No post found</h1>
     </div>
     <!--  -->
 
@@ -23,8 +26,8 @@
     <!--  -->
 
     <div>
-      <button class="btn btn-info" @click="changePage(previous)">Previous Page</button>
-      <button class="btn btn-info" @click="changePage(next)">Next page</button>
+      <button class="btn btn-info" :disabled="!previous" @click="changePage(previous)">Previous Page</button>
+      <button class="btn btn-info" :disabled="!next" @click="changePage(next)">Next page</button>
     </div>
   </div>
 </div>

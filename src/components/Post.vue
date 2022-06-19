@@ -2,11 +2,11 @@
     <div class="col-md-12 p-3">
         <div class="bg-light elevation-3">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                  <img @click="goToProfile" class="img-fluid profile-pic" :src="post.creator.picture" alt=""> 
                  <span class="p-2">{{post.creator.name}}</span>  
                 </div>
-                <div class="col-md-8 text-end" ><button  v-show="account.id == post.creator.id">
+                <div class="col-md-6 text-end" ><button class="btn" v-show="account.id == post.creator.id">
                 <i class="mdi mdi-delete selectable" @click="deletePost"></i>
                 </button>
                 </div>
@@ -15,7 +15,7 @@
                 <div class="col-12 py-3">
                      {{post.body}}
                 <div>
-                    <img class="img-fluid img-post" :src="post.imgUrl" alt="">
+                    <img class="img-fluid img-post" v-if="post.imgUrl" :src="post.imgUrl" alt="">
                 </div>
                 </div>
             </div>
