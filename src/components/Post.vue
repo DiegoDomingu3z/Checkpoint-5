@@ -3,29 +3,86 @@
         <div class="bg-light elevation-3">
             <div class="row">
                 <div class="col-md-4">
-                 <img class="img-fluid" :src="post.creator.picture" alt="">   
+                 <img @click="goToProfile" class="img-fluid profile-pic" :src="post.creator.picture" alt=""> 
+                 <span class="p-2">{{post.creator.name}}</span>  
                 </div>
-                <div class="col-md-8">
-                    {{post.body}}
+                <div class="col-md-8 text-end" ><button  v-show="account.id == post.creator.id">
+                <i class="mdi mdi-delete selectable" @click="deletePost"></i>
+                </button>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 py-3">
+                     {{post.body}}
+                <div>
+                    <img class="img-fluid img-post" :src="post.imgUrl" alt="">
+                </div>
+                </div>
+            </div>
+            <div class="col-12 text-end p-3"><i class="mdi mdi-cards-heart-outline p-2 selectable" @click="postLike(post.id)"></i>{{post.likes.length}}</div>
         </div>
     </div>
 </template>
 
 
 <script>
+import { computed } from '@vue/reactivity'
+import { router } from '../router'
+import { postsService } from '../services/PostsService'
+import { logger } from '../utils/Logger'
+import Pop from '../utils/Pop'
+import { AppState } from '../AppState'
 export default {
     props: {post: {type: Object, required: true}},
-    setup(){
+    setup(props){
         return {
-
+            async postLike(id){
+                try {
+                    await postsService.postLike(id)
+                    logger.log('liking in controller')
+                } catch (error) {
+                    Pop.toast(error.message, 'error')
+                    logger.log(error)
+                } },
+            async deletePost(){
+                try {
+                    if (await Pop.confirm()) {
+                        await postsService.deletePost(props.post.id)
+                    }
+                } catch (error) {
+                    Pop.toast(error.message, 'error')
+                    logger.log(error)
+                }
+            },
+            goToProfile(){
+                router.push({
+                    name: "Profile",
+                    params: { id: props.post.creatorId }
+                })
+            },
+            account: computed(() => AppState.account),
+            profile: computed(() => AppState.profile)
         }
+        
     }
 }
 </script>
 
 
 <style lang="scss" scoped>
+
+.profile-pic{
+    width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50em;
+}
+
+.img-post{
+    height: 400px;
+    width: 100%;
+}
+
+
 
 </style>

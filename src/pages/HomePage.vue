@@ -2,12 +2,17 @@
 <div class="container-fluid">
 
   <div class="row">
+    <!-- Profile Details -->
     <div class="col-md-3">
-
+      <Login/>
+      <!--  -->
     </div>
     <!-- Main Post Scroll -->
     <div class="col-md-6">
+        <Create/>
+      
     <Post v-for="p in post" :key="p.id" :post="p"/>
+      
     </div>
     <!--  -->
 
@@ -27,19 +32,27 @@
 
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, watchEffect } from 'vue'
 import Pop from '../utils/Pop'
 import { logger } from '../utils/Logger'
 import {postsService} from '../services/PostsService'
 import { AppState } from '../AppState'
 import { sponsorsService } from '../services/SponsorsService'
 export default {
+  name: "Home",
   setup(){
     onMounted(async () => {
       try {
         await postsService.getPost()
       } catch (error) {
         Pop.toast(error.message, 'error')
+        logger.log(error)
+      }
+    }),
+    watchEffect(async () => {
+      try {
+        await postsService.getPost()
+      } catch (error) {
         logger.log(error)
       }
     }),
