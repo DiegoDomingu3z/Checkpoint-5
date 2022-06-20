@@ -23,7 +23,8 @@
                     <img class="img-fluid img-post" v-if="post.imgUrl" :src="post.imgUrl" alt="">
                 </div>
             </div>
-            <div class="col-12 text-end p-3"><i :class="`mdi mdi-cards-heart-outline p-2 heart btn text-${post.like > 0 ? 'danger' : 'white'}`" v-if="account.id"  @click="postLike(post.id)"></i><span>{{post.likes.length}}</span></div>
+                      <div v-if="post.likeIds.includes(account.id)" class="col-12 text-end p-3"><i class="mdi mdi-cards-heart p-2 heart btn text-danger" v-if="account.id"  @click="postLike(post.id)"></i><span>{{post.likes.length}}</span></div>
+            <div v-else class="col-12 text-end p-3"><i class="mdi mdi-cards-heart-outline p-2 heart btn text-white" v-if="account.id"  @click="postLike(post.id)"></i><span>{{post.likes.length}}</span></div>
         </div>
     </div>
 </template>

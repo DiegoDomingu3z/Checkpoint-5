@@ -15,7 +15,7 @@
     <Post v-for="p in post" :key="p.id" :post="p"/>
     </div>
     <div class="col-md-6 text-center p-5" v-else>
-      <h1>No post found</h1>
+      <Loader/>
     </div>
     <!--  -->
 

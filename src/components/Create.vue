@@ -5,7 +5,7 @@
                 <div class="col-md-2 py-4 "><img  class="img-fluid profile-pic" :src="account.picture" alt="" ></div>
                 <div class="col-md-10 p-3">
                     <form @submit.prevent="">
-                        <textarea class="border border-2 border-dark bg-" required cols="55" rows="3" placeholder="  Share what's happening" v-model="postData.body"></textarea>
+                        <textarea class="border border-2 border-dark col-md-12" required cols="55" rows="3" placeholder="  Share what's happening" v-model="postData.body"></textarea>
                         <input class="border border-2 border-dark" required type="text" placeholder="Img Url" v-model="postData.imgUrl">
                     </form>
                 </div>
