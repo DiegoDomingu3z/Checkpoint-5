@@ -1,12 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 sticky">
-    <div class="col-10">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      Home
+  <nav class=" container-fluid navbar navbar-expand navbar-dark bg-primary sticky-top font">
+    <div class="col-9">
+    <router-link class="navbar-brand  d-flex" :to="{ name: 'Home' }">
+      <h1>Network</h1>
     </router-link>
     </div>
    
-    <div class="collapse navbar-collapse" id="navbarText text-end col-2">
+    <div class="collapse navbar-collapse col-3 " id="navbarText text-end ">
      <Search/>
     </div>
   </nav>
@@ -31,5 +31,9 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.font{
+  font-family: monospace;
 }
 </style>

@@ -1,16 +1,16 @@
 <template>
     <div class="row p-3">
-        <div class="col-md-12 bg-white elevation-3">
+        <div class="col-md-12 bg-grey elevation-5 border border-1 border-white">
             <div class="row">
-                <div class="col-md-2 py-4 "><img class="img-fluid profile-pic" :src="account.picture" alt="" ></div>
+                <div class="col-md-2 py-4 "><img  class="img-fluid profile-pic" :src="account.picture" alt="" ></div>
                 <div class="col-md-10 p-3">
                     <form @submit.prevent="">
-                        <textarea required cols="55" rows="3" placeholder="  Share what's happening" v-model="postData.body"></textarea>
-                        <input required type="text" placeholder="Img Url" v-model="postData.imgUrl">
+                        <textarea class="border border-2 border-dark bg-" required cols="55" rows="3" placeholder="  Share what's happening" v-model="postData.body"></textarea>
+                        <input class="border border-2 border-dark" required type="text" placeholder="Img Url" v-model="postData.imgUrl">
                     </form>
                 </div>
-                <div class="col-md-12 text-end fs-4">
-                    <i class="mdi mdi-post p-3 selectable" @click="createPost">Post</i>
+                <div class="col-md-12 text-end fs-4 post">
+                    <i class="mdi mdi-post p-3 hoverable" @click="createPost"><span>Post</span></i>
                 </div>
             </div>
         </div>
@@ -25,8 +25,10 @@ import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 import { AppState } from '../AppState'
+import { router } from '../router'
 export default {
-    setup(){
+    props: {post: {type: Object, required: true}},
+    setup(props){
         const postData = ref({});
         return{
             postData,
@@ -40,7 +42,9 @@ export default {
                     logger.log(error)
                 }
             },
-            account: computed(() => AppState.account)
+            
+            account: computed(() => AppState.account),
+            profile: computed(() => AppState.profile)
         }
     }
 }
@@ -50,9 +54,19 @@ export default {
 <style lang="scss" scoped>
 
 .profile-pic{
-    width: 50px;
-  height: 50px;
+    width: 75px;
+  height: 75px;
   object-fit: cover;
   border-radius: 50em;
+  border: 1px solid white
 }
+
+.hoverable {
+  cursor: pointer;
+}
+
+.post:hover{
+    transform: scale(1.009);
+}
+
 </style>

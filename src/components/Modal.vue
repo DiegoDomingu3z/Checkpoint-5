@@ -8,7 +8,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
-      <div class="modal-content bg-white border-0">
+      <div class="modal-content bg-grey border-0">
         <div class="modal-header">
           <h5 class="modal-title">
             <slot name="header">

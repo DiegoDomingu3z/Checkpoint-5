@@ -1,25 +1,29 @@
 <template>
     <div class="col-md-12 p-3">
-        <div class="bg-light elevation-3">
-            <div class="row">
+        <div class="bg-black text-light elevation-5">
+            <div class="row p-2">
                 <div class="col-md-6">
-                 <img @click="goToProfile" class="img-fluid profile-pic" :src="post.creator.picture" alt=""> 
-                 <span class="p-2">{{post.creator.name}}</span>  
+                 <img @click="goToProfile" class="img-fluid profile-pic hoverable" :src="post.creator.picture" alt=""> 
+                 <span class="p-2">{{post.creator.name}}</span> <span> <i
+                class="mdi mdi-school-outline"
+                v-if="post.creator.graduated == true"
+              ></i></span>
+                 <div class="pt-3"> <p>Posted: {{ new Date(post.createdAt).toLocaleString() }}</p></div> 
                 </div>
                 <div class="col-md-6 text-end" ><button class="btn" v-show="account.id == post.creator.id">
-                <i class="mdi mdi-delete selectable" @click="deletePost"></i>
+                <i class="mdi mdi-delete text-white hoverable fs-5" @click="deletePost"></i>
                 </button>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 py-3">
+                <div class="col-12 px-4 pb-3">
                      {{post.body}}
+                </div>
                 <div>
                     <img class="img-fluid img-post" v-if="post.imgUrl" :src="post.imgUrl" alt="">
                 </div>
-                </div>
             </div>
-            <div class="col-12 text-end p-3"><i class="mdi mdi-cards-heart-outline p-2 selectable" @click="postLike(post.id)"></i>{{post.likes.length}}</div>
+            <div class="col-12 text-end p-3"><i :class="`mdi mdi-cards-heart-outline p-2 heart btn text-${post.like > 0 ? 'danger' : 'white'}`" v-if="account.id"  @click="postLike(post.id)"></i><span>{{post.likes.length}}</span></div>
         </div>
     </div>
 </template>
@@ -61,7 +65,8 @@ export default {
                 })
             },
             account: computed(() => AppState.account),
-            profile: computed(() => AppState.profile)
+            profile: computed(() => AppState.profile),
+            likes: computed(() => AppState.likes)
         }
         
     }
@@ -76,13 +81,23 @@ export default {
   height: 50px;
   object-fit: cover;
   border-radius: 50em;
+   border: 1px solid white
 }
 
 .img-post{
     height: 400px;
     width: 100%;
 }
+.hoverable {
+  cursor: pointer;
+}
+.hoverable:hover{
+    transform: scale(1.10);
+}
 
+.heart:hover{
+    transform: scale(1.35);
+}
 
 
 </style>

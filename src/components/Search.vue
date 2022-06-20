@@ -1,8 +1,7 @@
 <template>
     <div class="row">
         <form @submit.prevent="searchPost">
-        <input  v-model="search" class="form-control search" type="text" placeholder="Search">
-        <button><i class="mdi mdi-magnify fs-2"></i></button>
+            <div class=""><input  v-model="search" class="search" type="text" placeholder="Search"><span><button class="btn"><i class="mdi mdi-magnify fs-2 text-white"></i></button></span></div>
         </form>
         
     </div>
@@ -39,6 +38,8 @@ export default {
 <style lang="scss" scoped>
 .search{
     border-radius: 50em;
+    height: 40px;
+    width: 200px;
 }
 
 </style>

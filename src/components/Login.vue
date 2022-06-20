@@ -1,11 +1,15 @@
 <template>
-  <span class="navbar-text">
+  <span class="navbar-text sticky-top">
+    <div class="row p-3">
+      
+    <div class="bg-black elevation-3 p-5 border border-white">
+
     <button
-      class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
+      class="btn selectable text-white lighten-30 text-uppercase my-2 my-lg-0"
       @click="login"
       v-if="!user.isAuthenticated"
     >
-      Login
+      <div class="text-center">Login</div>
     </button>
 
     <div class="dropdown my-2 my-lg-0" v-else>
@@ -15,14 +19,16 @@
         aria-expanded="false"
         id="authDropdown"
       >
-        <div v-if="account.picture">
+        <div class="text-center" v-if="account.picture">
           <img
             :src="account.picture"
             alt="account photo"
             height="40"
-            class="rounded"
+            class="profile-pic"
           />
-          <span class="mx-3 text-success lighten-30">{{ account.name }}</span>
+        </div>
+        <div class="text-center p-4">
+          <span class="mx-3 text-white">{{ account.name }}</span>
         </div>
       </div>
       <div
@@ -43,6 +49,17 @@
         </div>
       </div>
     </div>
+    <div class="pt-5"  v-if="account.id">
+      <i class="mdi mdi-account-circle"></i><span class="px-4"> {{account.github}}</span>
+    </div>
+    <div class="pt-5" v-if="account.id">
+      <i class="mdi mdi-account-check"></i><span class="px-4"> {{account.linkedin}}</span>
+    </div>
+    <div class="pt-5"  v-if="account.id">
+      <i class="mdi mdi-newspaper-variant"></i><span class="px-4">{{account.resume}}</span>
+    </div>
+    </div>
+    </div>
   </span>
 </template>
 
@@ -62,6 +79,7 @@ export default {
       async logout() {
         AuthService.logout({ returnTo: window.location.origin });
       },
+      account: computed(() => AppState.account)
     };
   },
 };
@@ -80,5 +98,12 @@ export default {
 }
 .hoverable {
   cursor: pointer;
+}
+
+.profile-pic{
+    width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50em;
 }
 </style>

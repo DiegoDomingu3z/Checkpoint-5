@@ -1,10 +1,10 @@
 <template>
-<div>
+<div class="sticky-top">
     <div class="col-md-12 py-3">
         <img class="img-fluid" :src="sponsor.tall" alt="">
     </div>
     
-</div>
+</div> 
     
 </template>
 

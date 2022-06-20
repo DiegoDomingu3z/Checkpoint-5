@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid">
+<div class="container-fluid bg-grey">
 
   <div class="row">
     <!-- Profile Details -->
@@ -10,7 +10,7 @@
     <!-- Main Post Scroll -->
     <div class="col-md-6" v-if="post.length > 0">
 
-        <Create/>
+        <Create v-if="account.id"/>
       
     <Post v-for="p in post" :key="p.id" :post="p"/>
     </div>
@@ -25,9 +25,9 @@
     </div>
     <!--  -->
 
-    <div>
-      <button class="btn btn-info" :disabled="!previous" @click="changePage(previous)">Previous Page</button>
-      <button class="btn btn-info" :disabled="!next" @click="changePage(next)">Next page</button>
+    <div class="d-flex justify-content-around pb-4">
+      <button class="btn text-white border border-white edit" v-if="previous" @click="changePage(previous)"> - Previous Page</button>
+      <button class="btn text-white border border-white edit" :disabled="!next" @click="changePage(next)">Next page +</button>
     </div>
   </div>
 </div>
@@ -73,6 +73,7 @@ export default {
       sponsor: computed(() => AppState.sponsors),
       next: computed(() => AppState.nextPage),
       previous: computed(() => AppState.previousPage),
+      account: computed(() => AppState.account),
       async changePage(url){
         try {
           await postsService.changePage(url)
@@ -90,4 +91,8 @@ export default {
 
 <style lang="scss" scoped>
 
+
+.edit:hover{
+    background-color: purple;
+}
 </style>
