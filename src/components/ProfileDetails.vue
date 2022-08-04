@@ -7,36 +7,47 @@
         </div>
         <div class="row justify-content-center profile">
           <div class="col-12 d-flex flex-column text-start p-4">
-            <img class="profile-img" :src="profile.picture" alt=""/>
-             {{profile.class}}
-            </div>
+            <img class="profile-img" :src="profile.picture" alt="" />
+            {{ profile.class }}
+          </div>
 
-            <h3 class="col-12 text-center border-bottom border-dark border-2 pb-2">
-              {{ profile.name }}
-              <i
-                class="mdi mdi-school-outline"
-                v-if="profile.graduated == true"
-              ></i>
-            </h3>
-            <div>
-            <span><i class="mdi mdi-account-circle p-3"></i>{{profile.github}}</span>
-            <span><i class="mdi mdi-account-check p-3"></i>{{profile.linkedin}}</span>
-            <span><i class="mdi mdi-newspaper-variant p-3"></i>{{profile.resume}}</span>
-            </div>
-            <p class="px-4 pt-4">
-              {{ profile.bio }}
-            </p>
-            <div class="text-end">
-              <button
-                v-show="profile.id == account.id"
-                type="button"
-                class="btn border border-1 border-white text-white"
-                data-bs-toggle="modal"
-                data-bs-target="#edit-modal">
-                <i class="mdi mdi-pencil"></i>
-              </button>
-            </div>
-          
+          <h3
+            class="col-12 text-center border-bottom border-dark border-2 pb-2"
+          >
+            {{ profile.name }}
+            <i
+              class="mdi mdi-school-outline"
+              v-if="profile.graduated == true"
+            ></i>
+          </h3>
+          <div>
+            <span
+              ><i class="mdi mdi-account-circle p-3"></i
+              >{{ profile.github }}</span
+            >
+            <span
+              ><i class="mdi mdi-account-check p-3"></i
+              >{{ profile.linkedin }}</span
+            >
+            <span
+              ><i class="mdi mdi-newspaper-variant p-3"></i
+              >{{ profile.resume }}</span
+            >
+          </div>
+          <p class="px-4 pt-4">
+            {{ profile.bio }}
+          </p>
+          <div class="text-end">
+            <button
+              v-show="profile.id == account.id"
+              type="button"
+              class="btn border border-1 border-white text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#edit-modal"
+            >
+              <i class="mdi mdi-pencil"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -74,6 +85,6 @@ export default {
   height: 120px;
   object-fit: cover;
   border-radius: 50em;
-   border: 1px solid white
+  border: 1px solid white;
 }
 </style>

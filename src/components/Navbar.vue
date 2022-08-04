@@ -1,13 +1,15 @@
 <template>
-  <nav class=" container-fluid navbar navbar-expand navbar-dark bg-primary sticky-top font">
+  <nav
+    class="container-fluid navbar navbar-expand navbar-dark bg sticky-top font"
+  >
     <div class="col-9">
-    <router-link class="navbar-brand  d-flex" :to="{ name: 'Home' }">
-      <h1>Network</h1>
-    </router-link>
+      <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+        <h1>Instagram</h1>
+      </router-link>
     </div>
-   
-    <div class="collapse navbar-collapse col-3 " id="navbarText text-end ">
-     <Search/>
+
+    <div class="collapse navbar-collapse col-3" id="navbarText text-end ">
+      <Search />
     </div>
   </nav>
 </template>
@@ -33,7 +35,11 @@ a:hover {
   border-bottom-right-radius: 0;
 }
 
-.font{
+.font {
   font-family: monospace;
+}
+
+.bg {
+  background: black;
 }
 </style>
